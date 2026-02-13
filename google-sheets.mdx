@@ -1,0 +1,61 @@
+---
+title: "Google Sheets"
+description: "Sync transactions to a Google Sheets spreadsheet"
+---
+
+Google Sheets is the most popular destination for Redbark Sync. Transactions are appended as rows to a sheet (tab) within a spreadsheet you choose.
+
+## Setup
+
+<Steps>
+  <Step title="Connect your Google account">
+    Click **Add Destination**, select **Google Sheets**, and sign in with Google. Redbark Sync will request permission to access your spreadsheets.
+  </Step>
+  <Step title="Select a spreadsheet">
+    Choose which Google Sheets spreadsheet to use from the list of spreadsheets in your Google Drive.
+  </Step>
+  <Step title="Select a sheet">
+    Pick the sheet (tab) within the spreadsheet where transactions will be written. If your spreadsheet only has one sheet, it will be selected automatically.
+  </Step>
+</Steps>
+
+## How it works
+
+On each sync, Redbark Sync:
+
+1. **Checks for headers** — if the first row is empty, column headers are created automatically
+2. **Reads existing Transaction IDs** — column A is scanned to identify transactions that have already been synced
+3. **Appends new rows** — only new transactions are appended to the bottom of the sheet
+
+## Column format
+
+Transactions are written as rows with the following columns:
+
+| Column | Type | Description |
+| --- | --- | --- |
+| A — Transaction ID | Text | Unique identifier used for deduplication |
+| B — Date | Date | Transaction date |
+| C — Description | Text | Transaction description |
+| D — Amount | Number | Transaction amount |
+| E — Direction | Text | `credit` or `debit` |
+| F — Balance | Number | Account balance after transaction |
+| G — Category | Text | Transaction category (if available) |
+| H — Merchant | Text | Merchant name (if available) |
+| I — Account | Text | Bank account name |
+| J — Status | Text | `posted` or `pending` |
+| K — Class | Text | `payment`, `transfer`, `fee`, `interest`, or `other` |
+| L — Post Date | Date | Date the transaction was posted |
+
+<Tip>
+  You can safely add your own columns to the right of column L — they won't be affected by syncs.
+</Tip>
+
+## Authentication
+
+Google Sheets uses OAuth 2.0 with refresh tokens. Your access token is refreshed automatically before each sync. If your Google session is revoked, you'll need to re-authenticate from the [destinations](/destinations) page.
+
+## Tips
+
+- **One sheet per sync** — each sync writes to a single sheet. Create multiple syncs if you want different accounts in different sheets.
+- **Formulas are safe** — syncs only append rows and never modify existing data, so your formulas, charts, and formatting are preserved.
+- **Shared spreadsheets** — you can share the spreadsheet with others. Only the Google account used to connect needs to grant access to Redbark Sync.

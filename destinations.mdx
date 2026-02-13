@@ -1,43 +1,74 @@
 ---
 title: "Destinations"
-description: "Manage your Google Sheets destinations"
+description: "Choose where your transactions are synced"
 ---
 
-A destination is a specific sheet within a Google Sheets spreadsheet where transactions are written.
+A destination is a specific location — a Google Sheets spreadsheet, an Airtable base, or a Notion database — where your bank transactions are written.
+
+You can connect multiple destinations and create separate syncs for each, allowing you to send different accounts to different places.
+
+## Supported destinations
+
+<Columns cols={3}>
+  <Card title="Google Sheets" icon="table" href="/google-sheets">
+    Sync transactions to a spreadsheet in Google Sheets.
+  </Card>
+  <Card title="Airtable" icon="grid-2" href="/airtable">
+    Sync transactions to a table in an Airtable base.
+  </Card>
+  <Card title="Notion" icon="book" href="/notion">
+    Sync transactions to a database in Notion.
+  </Card>
+</Columns>
 
 ## Destinations list
 
-Each destination card shows the spreadsheet name, sheet name, and a link to open it directly in Google Sheets.
+Each destination card shows:
+
+- **Destination type** icon (Google Sheets, Airtable, or Notion)
+- **Name** — the spreadsheet, base, or database name
+- **Subtitle** — the specific sheet, table, or database within
+- **Open** button — link to open the destination directly in its app
 
 ## Adding a destination
 
 <Steps>
-  <Step title="Connect your Google account">
-    Click **Add Destination** and sign in with Google to grant Redbark Sync access to your spreadsheets.
+  <Step title="Choose a type">
+    Click **Add Destination** and select Google Sheets, Airtable, or Notion.
   </Step>
-  <Step title="Select a spreadsheet">
-    Choose which Google Sheets spreadsheet to use.
+  <Step title="Authenticate">
+    Sign in with your account for the chosen service. Redbark Sync will request permission to read and write data.
   </Step>
-  <Step title="Select a sheet">
-    Pick the sheet (tab) within the spreadsheet where transactions will be written.
+  <Step title="Select a target">
+    Pick the specific resource to write transactions to:
+
+    - **Google Sheets** — choose a spreadsheet, then a sheet (tab)
+    - **Airtable** — choose a base, then a table
+    - **Notion** — choose a database
   </Step>
 </Steps>
 
-## Column format
+## Transaction fields
 
-Transactions are written with the following columns:
+All destinations receive the same set of transaction fields, formatted appropriately for each platform:
 
-| Column | Description |
+| Field | Description |
 | --- | --- |
+| Transaction ID | Unique identifier used for deduplication |
 | Date | Transaction date |
 | Description | Transaction description |
 | Amount | Transaction amount |
+| Direction | Credit or debit |
 | Balance | Account balance after transaction |
 | Category | Transaction category (if available) |
+| Merchant | Merchant name (if available) |
 | Account | Bank account name |
+| Status | Posted or pending |
+| Class | Payment, transfer, fee, interest, or other |
+| Post Date | Date the transaction was posted |
 
 <Tip>
-  New rows are appended to the bottom of the sheet. You can safely add your own columns to the right — they won't be affected by syncs.
+  Transactions are deduplicated using the Transaction ID. Re-running a sync will not create duplicate entries.
 </Tip>
 
 ## Removing a destination

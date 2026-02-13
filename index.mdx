@@ -1,9 +1,9 @@
 ---
 title: "Getting Started"
-description: "Sync your Australian bank transactions to Google Sheets automatically"
+description: "Sync your Australian bank transactions to Google Sheets, Airtable, or Notion automatically"
 ---
 
-Redbark Sync connects your bank accounts to Google Sheets, syncing transactions daily so your finances are always up to date.
+Redbark Sync connects your bank accounts to your favourite productivity tools, syncing transactions daily so your finances are always up to date.
 
 ## How it works
 
@@ -11,8 +11,8 @@ Redbark Sync connects your bank accounts to Google Sheets, syncing transactions 
   <Card title="Connect your bank" icon="building-columns">
     Securely link your Australian bank account using the Consumer Data Right.
   </Card>
-  <Card title="Choose a spreadsheet" icon="table">
-    Pick which Google Sheets spreadsheet and sheet to write transactions to.
+  <Card title="Choose a destination" icon="bullseye-arrow">
+    Pick where transactions should go — Google Sheets, Airtable, or Notion.
   </Card>
   <Card title="Sync automatically" icon="rotate">
     Transactions sync daily. You can also trigger a manual sync anytime.
@@ -23,28 +23,40 @@ Redbark Sync connects your bank accounts to Google Sheets, syncing transactions 
 
 <Steps>
   <Step title="Connect your bank">
-    Click **Add Connection** to open the Basiq consent popup. Select your bank and log in. Your credentials are handled securely by Basiq through the Consumer Data Right — they are never stored on our servers.
+    Click **Add Connection** to open the Fiskil consent flow. Select your bank and log in. Your credentials are handled securely through Australia's Consumer Data Right — they are never stored on our servers.
   </Step>
 
   <Step title="Select an account">
     Once connected, your accounts sync automatically. Choose the account you want to sync — you'll see the account name, type, masked number, and current balance.
   </Step>
 
-  <Step title="Connect Google Sheets">
-    Sign in with your Google account to grant Redbark Sync access to your spreadsheets. Select a spreadsheet and a sheet within it.
+  <Step title="Add a destination">
+    Click **Add Destination** and choose where to send your transactions:
+
+    - **[Google Sheets](/google-sheets)** — sync to a spreadsheet
+    - **[Airtable](/airtable)** — sync to an Airtable base
+    - **[Notion](/notion)** — sync to a Notion database
+
+    Sign in with your account to grant Redbark Sync access, then select the specific spreadsheet, base, or database to write to.
   </Step>
 
-  <Step title="Review columns">
-    Transactions are written with these columns:
+  <Step title="Review fields">
+    Transactions are synced with the following fields:
 
-    | Column | Description |
+    | Field | Description |
     | --- | --- |
+    | Transaction ID | Unique identifier for deduplication |
     | Date | Transaction date |
     | Description | Transaction description |
     | Amount | Transaction amount |
+    | Direction | Credit or debit |
     | Balance | Account balance after transaction |
     | Category | Transaction category (if available) |
+    | Merchant | Merchant name (if available) |
     | Account | Bank account name |
+    | Status | Posted or pending |
+    | Class | Payment, transfer, fee, interest, or other |
+    | Post Date | Date the transaction was posted |
   </Step>
 
   <Step title="Start syncing">

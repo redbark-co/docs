@@ -1,16 +1,16 @@
 ---
 title: "Syncs"
-description: "Manage your bank-to-spreadsheet transaction syncs"
+description: "Manage your bank-to-destination transaction syncs"
 ---
 
-A sync links one bank account to one Google Sheet. Transactions flow from your bank into the spreadsheet automatically each day.
+A sync links one bank account to one destination. Transactions flow from your bank into the destination automatically each day.
 
 ## Sync list
 
 The syncs page shows a card for each sync with:
 
 - **Source** — the bank account (institution logo, account name, masked number)
-- **Destination** — the Google Sheets spreadsheet and sheet name
+- **Destination** — the destination name and type (Google Sheets, Airtable, or Notion)
 - **Status** — current sync state
 - **Last activity** — how long ago the last sync ran
 
@@ -27,7 +27,7 @@ The syncs page shows a card for each sync with:
 Click **Details** on any sync card to open its detail page. You'll see four information cards:
 
 - **Source** — institution, account name and number, connection status
-- **Destination** — spreadsheet and sheet name, with a link to open in Google Sheets
+- **Destination** — destination name and type, with a link to open in the destination app
 - **Status** — whether the sync is active and the result of the last run
 - **Timeline** — when the sync was created and when it last ran
 
@@ -36,7 +36,7 @@ Click **Details** on any sync card to open its detail page. You'll see four info
 From the detail page you can:
 
 - **Toggle sync on/off** — disable automatic syncs without deleting the sync
-- **Change destination** — switch which spreadsheet the sync writes to
+- **Change destination** — switch which destination the sync writes to
 - **Delete sync** — permanently remove the sync
 
 ## Manual sync

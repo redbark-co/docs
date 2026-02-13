@@ -1,0 +1,61 @@
+---
+title: "Airtable"
+description: "Sync transactions to an Airtable base"
+---
+
+Airtable lets you sync transactions into a structured table within a base, giving you access to Airtable's filtering, grouping, and visualisation features.
+
+## Setup
+
+<Steps>
+  <Step title="Connect your Airtable account">
+    Click **Add Destination**, select **Airtable**, and sign in. Redbark Sync uses OAuth with PKCE to securely connect to your Airtable workspace.
+  </Step>
+  <Step title="Select a base">
+    Choose the Airtable base where transactions should be stored.
+  </Step>
+  <Step title="Select a table">
+    Pick the table within the base. You can use an existing table or create a new one beforehand.
+  </Step>
+</Steps>
+
+## How it works
+
+On each sync, Redbark Sync:
+
+1. **Ensures fields exist** — any missing fields are created automatically using the Airtable Meta API
+2. **Reads existing Transaction IDs** — the "Transaction ID" field is queried to identify transactions that have already been synced
+3. **Creates new records** — only new transactions are inserted as records, in batches of 10 (Airtable's API limit)
+
+## Field schema
+
+The following fields are created in your table:
+
+| Field | Airtable Type | Description |
+| --- | --- | --- |
+| Transaction ID | Single line text | Unique identifier used for deduplication |
+| Date | Date | Transaction date |
+| Description | Single line text | Transaction description |
+| Amount | Number | Transaction amount |
+| Direction | Single select | `credit` or `debit` |
+| Balance | Number | Account balance after transaction |
+| Category | Single line text | Transaction category (if available) |
+| Merchant | Single line text | Merchant name (if available) |
+| Account | Single line text | Bank account name |
+| Status | Single line text | `posted` or `pending` |
+| Class | Single line text | `payment`, `transfer`, `fee`, `interest`, or `other` |
+| Post Date | Date | Date the transaction was posted |
+
+<Info>
+  Fields are only created if they don't already exist. If you've pre-created fields with matching names, Redbark Sync will use them as-is.
+</Info>
+
+## Authentication
+
+Airtable uses OAuth 2.0 with PKCE. Access tokens are refreshed automatically before each sync. If your Airtable session is revoked, you'll need to re-authenticate from the [destinations](/destinations) page.
+
+## Tips
+
+- **Views and filters** — create custom Airtable views to filter transactions by category, date range, or account.
+- **Automations** — use Airtable's built-in automations to trigger workflows when new transactions are synced (e.g. send a Slack notification for large transactions).
+- **Existing tables** — you can point Redbark Sync at an existing table. Missing fields will be added automatically without affecting your existing data.

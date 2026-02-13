@@ -23,6 +23,14 @@
           "runs",
           "consents"
         ]
+      },
+      {
+        "group": "Destinations",
+        "pages": [
+          "google-sheets",
+          "airtable",
+          "notion"
+        ]
       }
     ],
     "global": {

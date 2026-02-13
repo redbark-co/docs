@@ -1,0 +1,59 @@
+---
+title: "Notion"
+description: "Sync transactions to a Notion database"
+---
+
+Notion lets you sync transactions into a database, where you can use Notion's views, filters, and formulas to organise and analyse your finances.
+
+## Setup
+
+<Steps>
+  <Step title="Connect your Notion account">
+    Click **Add Destination**, select **Notion**, and sign in. You'll be asked to grant Redbark Sync access to a specific page or database in your workspace.
+  </Step>
+  <Step title="Select a database">
+    Choose the Notion database where transactions should be stored. The database must be shared with the Redbark Sync integration during the OAuth flow.
+  </Step>
+</Steps>
+
+## How it works
+
+On each sync, Redbark Sync:
+
+1. **Ensures properties exist** — any missing properties are added to the database automatically
+2. **Reads existing Transaction IDs** — the "Transaction ID" property is queried to identify transactions that have already been synced
+3. **Creates new pages** — only new transactions are inserted as database pages, in batches of up to 100
+
+## Property schema
+
+The following properties are created in your database:
+
+| Property | Notion Type | Description |
+| --- | --- | --- |
+| Description | Title | Transaction description (used as the page title) |
+| Transaction ID | Rich text | Unique identifier used for deduplication |
+| Date | Date | Transaction date |
+| Amount | Number | Transaction amount |
+| Direction | Select | `credit` or `debit` |
+| Balance | Number | Account balance after transaction |
+| Category | Rich text | Transaction category (if available) |
+| Merchant | Rich text | Merchant name (if available) |
+| Account | Rich text | Bank account name |
+| Status | Select | `posted` or `pending` |
+| Class | Rich text | `payment`, `transfer`, `fee`, `interest`, or `other` |
+| Post Date | Date | Date the transaction was posted |
+
+<Info>
+  The "Description" field is used as the Notion page title, so each transaction appears as a named entry in your database.
+</Info>
+
+## Authentication
+
+Notion uses OAuth 2.0. Unlike Google and Airtable, Notion tokens do not expire and do not need to be refreshed. If you revoke access from your Notion settings, you'll need to re-authenticate from the [destinations](/destinations) page.
+
+## Tips
+
+- **Database views** — create table, board, calendar, or gallery views to visualise transactions in different ways.
+- **Formulas** — add Notion formula properties to calculate running totals, categorise spending, or flag large transactions.
+- **Linked databases** — reference your transaction database from other Notion pages to build dashboards alongside your notes and planning.
+- **Permissions** — during setup, you choose exactly which pages the integration can access. Redbark Sync can only write to databases you've explicitly shared with it.
