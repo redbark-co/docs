@@ -1,0 +1,40 @@
+---
+title: "Consents"
+description: "Manage your Consumer Data Right (CDR) consents"
+---
+
+A CDR consent is a time-limited agreement that allows Redbark Sync to access your banking data. Each consent is tied to a specific bank and expires after 12 months.
+
+<Info>
+  Under Australia's Consumer Data Right, you control how your banking data is shared. Consents expire after 12 months and can be withdrawn at any time.
+</Info>
+
+## Consent cards
+
+Each consent shows:
+
+- **Bank name** and status icon
+- **Purpose** — what the data is used for (e.g. "Transaction sync to Google Sheets")
+- **Status badge** — Active, Expired, or Withdrawn
+- **Data shared** — the types of data included (e.g. Transactions, Accounts, Balances)
+- **Created date** and **expiry date**
+
+## Statuses
+
+| Status | Description |
+| --- | --- |
+| **Active** | Consent is valid and data can be accessed |
+| **Expired** | The 12-month consent period has ended |
+| **Withdrawn** | You have revoked the consent |
+
+## Expiring consents
+
+Consents last 12 months from the date they were created. A warning badge appears when a consent is within 30 days of expiring. Once expired, syncs using that bank connection will stop running.
+
+## Withdrawing consent
+
+Click **Withdraw Consent** on an active consent to revoke data access immediately. This will disable any syncs that use the associated bank connection. Data that has already been synced to your spreadsheets is not deleted.
+
+## Re-consenting
+
+To restore access after a consent expires or is withdrawn, add a new bank connection from the [connections](/connections) page. This will create a fresh 12-month consent.

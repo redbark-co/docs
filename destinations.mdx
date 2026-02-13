@@ -1,0 +1,45 @@
+---
+title: "Destinations"
+description: "Manage your Google Sheets destinations"
+---
+
+A destination is a specific sheet within a Google Sheets spreadsheet where transactions are written.
+
+## Destinations list
+
+Each destination card shows the spreadsheet name, sheet name, and a link to open it directly in Google Sheets.
+
+## Adding a destination
+
+<Steps>
+  <Step title="Connect your Google account">
+    Click **Add Destination** and sign in with Google to grant Redbark Sync access to your spreadsheets.
+  </Step>
+  <Step title="Select a spreadsheet">
+    Choose which Google Sheets spreadsheet to use.
+  </Step>
+  <Step title="Select a sheet">
+    Pick the sheet (tab) within the spreadsheet where transactions will be written.
+  </Step>
+</Steps>
+
+## Column format
+
+Transactions are written with the following columns:
+
+| Column | Description |
+| --- | --- |
+| Date | Transaction date |
+| Description | Transaction description |
+| Amount | Transaction amount |
+| Balance | Account balance after transaction |
+| Category | Transaction category (if available) |
+| Account | Bank account name |
+
+<Tip>
+  New rows are appended to the bottom of the sheet. You can safely add your own columns to the right — they won't be affected by syncs.
+</Tip>
+
+## Removing a destination
+
+Select **Delete** from the three-dot menu on a destination card. Any syncs using this destination will also be deleted.

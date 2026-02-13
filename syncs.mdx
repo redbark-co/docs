@@ -1,0 +1,48 @@
+---
+title: "Syncs"
+description: "Manage your bank-to-spreadsheet transaction syncs"
+---
+
+A sync links one bank account to one Google Sheet. Transactions flow from your bank into the spreadsheet automatically each day.
+
+## Sync list
+
+The syncs page shows a card for each sync with:
+
+- **Source** — the bank account (institution logo, account name, masked number)
+- **Destination** — the Google Sheets spreadsheet and sheet name
+- **Status** — current sync state
+- **Last activity** — how long ago the last sync ran
+
+## Statuses
+
+| Status | Description |
+| --- | --- |
+| **Active** | Sync is enabled and running on schedule |
+| **Inactive** | Sync is disabled — automatic syncs won't run |
+| **Syncing** | A sync is currently in progress |
+
+## Sync detail page
+
+Click **Details** on any sync card to open its detail page. You'll see four information cards:
+
+- **Source** — institution, account name and number, connection status
+- **Destination** — spreadsheet and sheet name, with a link to open in Google Sheets
+- **Status** — whether the sync is active and the result of the last run
+- **Timeline** — when the sync was created and when it last ran
+
+### Settings
+
+From the detail page you can:
+
+- **Toggle sync on/off** — disable automatic syncs without deleting the sync
+- **Change destination** — switch which spreadsheet the sync writes to
+- **Delete sync** — permanently remove the sync
+
+## Manual sync
+
+Click **Sync Now** on a sync's detail page to trigger an immediate sync. The button is disabled while the sync is inactive.
+
+## Creating a new sync
+
+Click **Add Sync** from the syncs page. You'll need at least one [connection](/connections) and one [destination](/destinations) before you can create a sync.

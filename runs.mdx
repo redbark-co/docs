@@ -1,0 +1,37 @@
+---
+title: "Runs"
+description: "View the history of all sync executions"
+---
+
+A run is the execution record for a single sync — either a scheduled daily sync or a manual one triggered from the dashboard.
+
+## Runs table
+
+The runs page shows a table with 25 runs per page:
+
+| Column | Description |
+| --- | --- |
+| Status | Run result with a coloured dot indicator |
+| Source | Bank account with institution logo and masked number |
+| Destination | Spreadsheet and sheet name |
+| Transactions | Number of new transactions written (e.g. "+5 new") |
+| Duration | How long the sync took |
+| Date | When the run started |
+
+## Statuses
+
+| Status | Colour | Description |
+| --- | --- | --- |
+| **Syncing** | Blue | Sync is currently running |
+| **Success** | Green | Sync completed and transactions were written |
+| **Failed** | Red | Sync encountered an error |
+
+## Failed runs
+
+Common causes of a failed run:
+
+- **Expired Google OAuth** — re-connect your Google account from the [destinations](/destinations) page
+- **Invalidated bank connection** — your bank credentials have changed; reconnect from the [connections](/connections) page
+- **Expired CDR consent** — the 12-month consent period has ended; re-consent from the [consents](/consents) page
+
+The error message for a failed run is shown in the table row. Hover over truncated messages to see the full text.

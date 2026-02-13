@@ -1,0 +1,42 @@
+---
+title: "Connections"
+description: "Manage your linked bank accounts"
+---
+
+A connection is a link to your bank through the Consumer Data Right (CDR). Each connection can include multiple accounts — for example, a transaction account and a savings account at the same bank.
+
+## Connections list
+
+Each bank account card shows:
+
+- **Institution logo** and name
+- **Account name** and masked number (e.g. •••• 1234)
+- **Account type** — Transaction, Savings, Credit Card, Loan, Investment, or Term Deposit
+- **Status** — connection health
+- **Last synced** — when account data was last refreshed
+
+## Statuses
+
+| Status | Description |
+| --- | --- |
+| **Connected** | Working normally |
+| **Disconnected** | Credentials expired or were changed at the bank — reconnection required |
+| **Pending MFA** | The bank is requesting multi-factor authentication |
+
+## Adding a connection
+
+Click **Add Connection** to open the Basiq consent popup. Select your bank, log in, and grant consent. Once complete, your accounts are synced automatically.
+
+<Info>
+  Connections use Australia's Consumer Data Right framework. Your bank credentials are handled by Basiq and are never stored on Redbark servers.
+</Info>
+
+If you already have a [destination](/destinations) set up, you'll be offered the option to create a sync straight away.
+
+## Refreshing a connection
+
+Use the three-dot menu on an account card and select **Refresh** to pull the latest data from your bank.
+
+## Deleting a connection
+
+Select **Delete** from the three-dot menu to permanently remove a bank connection. Any syncs using accounts from this connection will also be deleted.
