@@ -1,16 +1,31 @@
 ---
 title: "Syncs"
-description: "Manage your bank-to-destination transaction syncs"
+description: "Manage your data syncs from banks and brokerages to destinations"
 ---
 
-A sync links one bank account to one destination. Transactions flow from your bank into the destination automatically each day.
+A sync links one account to one destination. Data flows from your bank or brokerage into the destination automatically.
+
+## Sync types
+
+The type of sync depends on the connection category:
+
+| Sync type | Source | Behaviour |
+| --- | --- | --- |
+| **Transactions** | Banking (AU/NZ) | New transactions are appended. Existing ones are skipped using the Transaction ID for deduplication. |
+| **Holdings** | Brokerage | A full snapshot of your portfolio replaces the previous data on each sync. |
+| **Trades** | Brokerage | New trades are appended. Existing ones are skipped using the Trade ID for deduplication. |
+
+<Info>
+  Holdings syncs replace all data on each run to give you an up-to-date portfolio snapshot. Transaction and trade syncs are append-only — they never modify existing records.
+</Info>
 
 ## Sync list
 
 The syncs page shows a card for each sync with:
 
-- **Source** — the bank account (institution logo, account name, masked number)
+- **Source** — the bank or brokerage account (institution logo, account name, masked number)
 - **Destination** — the destination name and type (Google Sheets, Airtable, or Notion)
+- **Sync type** — Transactions, Holdings, or Trades
 - **Status** — current sync state
 - **Last activity** — how long ago the last sync ran
 
@@ -46,3 +61,5 @@ Click **Sync Now** on a sync's detail page to trigger an immediate sync. The but
 ## Creating a new sync
 
 Click **Add Sync** from the syncs page. You'll need at least one [connection](/connections) and one [destination](/destinations) before you can create a sync.
+
+When creating a sync from a brokerage connection, you'll choose the sync type — **Holdings** or **Trades**. Banking connections automatically create a transaction sync.

@@ -3,7 +3,7 @@ title: "Runs"
 description: "View the history of all sync executions"
 ---
 
-A run is the execution record for a single sync — either a scheduled daily sync or a manual one triggered from the dashboard.
+A run is the execution record for a single sync — either triggered automatically or manually from the dashboard.
 
 ## Runs table
 
@@ -12,9 +12,9 @@ The runs page shows a table with 25 runs per page:
 | Column | Description |
 | --- | --- |
 | Status | Run result with a coloured dot indicator |
-| Source | Bank account with institution logo and masked number |
+| Source | Bank or brokerage account with institution logo and masked number |
 | Destination | Destination name and type |
-| Transactions | Number of new transactions written (e.g. "+5 new") |
+| Records | Number of new records written (e.g. "+5 new") |
 | Duration | How long the sync took |
 | Date | When the run started |
 
@@ -23,7 +23,7 @@ The runs page shows a table with 25 runs per page:
 | Status | Colour | Description |
 | --- | --- | --- |
 | **Syncing** | Blue | Sync is currently running |
-| **Success** | Green | Sync completed and transactions were written |
+| **Success** | Green | Sync completed and records were written |
 | **Failed** | Red | Sync encountered an error |
 
 ## Failed runs
@@ -32,6 +32,8 @@ Common causes of a failed run:
 
 - **Expired destination OAuth** — re-connect your account from the [destinations](/destinations) page
 - **Invalidated bank connection** — your bank credentials have changed; reconnect from the [connections](/connections) page
-- **Expired CDR consent** — the 12-month consent period has ended; re-consent from the [consents](/consents) page
+- **Expired CDR consent** — the 12-month consent period has ended (Australian banks only); re-consent from the [consents](/consents) page
+- **Revoked Akahu token** — your NZ bank access was revoked; reconnect from the [connections](/connections) page
+- **Brokerage connection issue** — your brokerage session has expired; reconnect from the [connections](/connections) page
 
 The error message for a failed run is shown in the table row. Hover over truncated messages to see the full text.

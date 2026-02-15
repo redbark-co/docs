@@ -1,9 +1,9 @@
 ---
 title: "Google Sheets"
-description: "Sync transactions to a Google Sheets spreadsheet"
+description: "Sync transactions, holdings, and trades to a Google Sheets spreadsheet"
 ---
 
-Google Sheets is the most popular destination for Redbark Sync. Transactions are appended as rows to a sheet (tab) within a spreadsheet you choose.
+Google Sheets is the most popular destination for Redbark Sync. It supports all three sync types — transactions, holdings, and trades — each written to a sheet (tab) within a spreadsheet you choose.
 
 ## Setup
 
@@ -15,11 +15,15 @@ Google Sheets is the most popular destination for Redbark Sync. Transactions are
     Choose which Google Sheets spreadsheet to use from the list of spreadsheets in your Google Drive.
   </Step>
   <Step title="Select a sheet">
-    Pick the sheet (tab) within the spreadsheet where transactions will be written. If your spreadsheet only has one sheet, it will be selected automatically.
+    Pick the sheet (tab) within the spreadsheet where data will be written. If your spreadsheet only has one sheet, it will be selected automatically.
   </Step>
 </Steps>
 
 ## How it works
+
+The sync behaviour depends on the type of sync:
+
+### Transactions (banking)
 
 On each sync, Redbark Sync:
 
@@ -27,9 +31,26 @@ On each sync, Redbark Sync:
 2. **Reads existing Transaction IDs** — column A is scanned to identify transactions that have already been synced
 3. **Appends new rows** — only new transactions are appended to the bottom of the sheet
 
-## Column format
+### Holdings (brokerage)
 
-Transactions are written as rows with the following columns:
+On each sync, Redbark Sync:
+
+1. **Writes headers** — column headers are written to the first row
+2. **Replaces all data** — the entire sheet is overwritten with a fresh snapshot of your portfolio
+
+<Info>
+  Holdings syncs replace all existing data in the sheet. Use a dedicated sheet for holdings to avoid losing other data.
+</Info>
+
+### Trades (brokerage)
+
+On each sync, Redbark Sync:
+
+1. **Checks for headers** — if the first row is empty, column headers are created automatically
+2. **Reads existing Trade IDs** — column A is scanned to identify trades that have already been synced
+3. **Appends new rows** — only new trades are appended to the bottom of the sheet
+
+## Transaction columns
 
 | Column | Type | Description |
 | --- | --- | --- |
@@ -46,8 +67,40 @@ Transactions are written as rows with the following columns:
 | K — Class | Text | `payment`, `transfer`, `fee`, `interest`, or `other` |
 | L — Post Date | Date | Date the transaction was posted |
 
+## Holdings columns
+
+| Column | Type | Description |
+| --- | --- | --- |
+| A — Symbol | Text | Stock ticker or symbol |
+| B — Name | Text | Company or asset name |
+| C — Quantity | Number | Number of shares held |
+| D — Avg Price | Number | Average purchase price per share |
+| E — Current Price | Number | Current market price |
+| F — Market Value | Number | Total current value |
+| G — P&L | Number | Unrealised profit or loss |
+| H — Currency | Text | Currency code (e.g. `USD`) |
+| I — Exchange | Text | Stock exchange code |
+| J — Last Updated | Date | When the data was last synced |
+
+## Trade columns
+
+| Column | Type | Description |
+| --- | --- | --- |
+| A — Trade ID | Text | Unique identifier used for deduplication |
+| B — Date | Date | Trade execution date |
+| C — Symbol | Text | Stock ticker or symbol |
+| D — Type | Text | `buy`, `sell`, `dividend`, `split`, `transfer`, `fee`, `interest`, or `other` |
+| E — Quantity | Number | Number of shares traded |
+| F — Price | Number | Price per share |
+| G — Total | Number | Total transaction amount |
+| H — Fees | Number | Trading or commission fees |
+| I — Currency | Text | Currency code (e.g. `USD`) |
+| J — Account | Text | Brokerage account name |
+| K — Description | Text | Additional trade description |
+| L — Settlement Date | Date | Settlement date (if available) |
+
 <Tip>
-  You can safely add your own columns to the right of column L — they won't be affected by syncs.
+  You can safely add your own columns to the right of the last data column — they won't be affected by syncs. For holdings sheets, keep additional data in separate sheets since the data is replaced on each sync.
 </Tip>
 
 ## Authentication
@@ -56,6 +109,7 @@ Google Sheets uses OAuth 2.0 with refresh tokens. Your access token is refreshed
 
 ## Tips
 
-- **One sheet per sync** — each sync writes to a single sheet. Create multiple syncs if you want different accounts in different sheets.
-- **Formulas are safe** — syncs only append rows and never modify existing data, so your formulas, charts, and formatting are preserved.
+- **One sheet per sync** — each sync writes to a single sheet. Create multiple syncs if you want different accounts or data types in different sheets.
+- **Formulas are safe** — transaction and trade syncs only append rows and never modify existing data, so your formulas, charts, and formatting are preserved.
 - **Shared spreadsheets** — you can share the spreadsheet with others. Only the Google account used to connect needs to grant access to Redbark Sync.
+- **Separate holdings sheets** — since holdings syncs replace all data, use a dedicated sheet for holdings and keep your analysis in a separate sheet that references it.

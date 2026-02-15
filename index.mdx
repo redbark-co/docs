@@ -1,69 +1,80 @@
 ---
 title: "Getting Started"
-description: "Sync your Australian bank transactions to Google Sheets, Airtable, or Notion automatically"
+description: "Sync your bank transactions, brokerage holdings, and trades to Google Sheets, Airtable, or Notion automatically"
 ---
 
-Redbark Sync connects your bank accounts to your favourite productivity tools, syncing transactions daily so your finances are always up to date.
+Redbark Sync connects your bank and brokerage accounts to your favourite productivity tools, syncing transactions, holdings, and trades so your finances are always up to date.
 
 ## How it works
 
 <Columns cols={3}>
-  <Card title="Connect your bank" icon="building-columns">
-    Securely link your Australian bank account using the Consumer Data Right.
+  <Card title="Connect an account" icon="building-columns">
+    Link your Australian bank, New Zealand bank, or brokerage account securely.
   </Card>
   <Card title="Choose a destination" icon="bullseye-arrow">
-    Pick where transactions should go — Google Sheets, Airtable, or Notion.
+    Pick where your data should go — Google Sheets, Airtable, or Notion.
   </Card>
   <Card title="Sync automatically" icon="rotate">
-    Transactions sync daily. You can also trigger a manual sync anytime.
+    Data syncs automatically. You can also trigger a manual sync anytime.
+  </Card>
+</Columns>
+
+## Supported providers
+
+<Columns cols={3}>
+  <Card title="Australian banks" icon="flag">
+    Connect via the Consumer Data Right (CDR) through Fiskil. Supports all major Australian banks.
+  </Card>
+  <Card title="New Zealand banks" icon="flag">
+    Connect via Akahu. Supports major New Zealand banks with OAuth authentication.
+  </Card>
+  <Card title="Brokerages" icon="chart-line">
+    Connect via SnapTrade. Sync holdings and trades from brokerages worldwide.
   </Card>
 </Columns>
 
 ## Set up your first sync
 
 <Steps>
-  <Step title="Connect your bank">
-    Click **Add Connection** to open the Fiskil consent flow. Select your bank and log in. Your credentials are handled securely through Australia's Consumer Data Right — they are never stored on our servers.
+  <Step title="Connect an account">
+    Click **Add Connection** and choose your provider:
+
+    - **Australian bank** — opens the Fiskil consent flow. Select your bank and log in via Australia's Consumer Data Right.
+    - **New Zealand bank** — opens the Akahu OAuth flow. Log in and authorise access.
+    - **Brokerage** — opens the SnapTrade connection portal. Link your brokerage account.
+
+    Your credentials are handled securely by each provider and are never stored on Redbark servers.
   </Step>
 
   <Step title="Select an account">
-    Once connected, your accounts sync automatically. Choose the account you want to sync — you'll see the account name, type, masked number, and current balance.
+    Once connected, your accounts sync automatically. Choose the account you want to sync — you'll see the account name, type, and current balance.
   </Step>
 
   <Step title="Add a destination">
-    Click **Add Destination** and choose where to send your transactions:
+    Click **Add Destination** and choose where to send your data:
 
-    - **[Google Sheets](/google-sheets)** — sync to a spreadsheet
-    - **[Airtable](/airtable)** — sync to an Airtable base
-    - **[Notion](/notion)** — sync to a Notion database
+    - **[Google Sheets](/google-sheets)** — sync to a spreadsheet (supports transactions, holdings, and trades)
+    - **[Airtable](/airtable)** — sync to an Airtable base (transactions)
+    - **[Notion](/notion)** — sync to a Notion database (transactions)
 
     Sign in with your account to grant Redbark Sync access, then select the specific spreadsheet, base, or database to write to.
   </Step>
 
-  <Step title="Review fields">
-    Transactions are synced with the following fields:
+  <Step title="Review data fields">
+    The data synced depends on the type of sync:
 
-    | Field | Description |
-    | --- | --- |
-    | Transaction ID | Unique identifier for deduplication |
-    | Date | Transaction date |
-    | Description | Transaction description |
-    | Amount | Transaction amount |
-    | Direction | Credit or debit |
-    | Balance | Account balance after transaction |
-    | Category | Transaction category (if available) |
-    | Merchant | Merchant name (if available) |
-    | Account | Bank account name |
-    | Status | Posted or pending |
-    | Class | Payment, transfer, fee, interest, or other |
-    | Post Date | Date the transaction was posted |
+    - **Transactions** (banking) — 12 fields including date, amount, description, category, and merchant
+    - **Holdings** (brokerage) — 10 fields including symbol, quantity, current price, and market value
+    - **Trades** (brokerage) — 12 fields including trade date, symbol, type, quantity, and price
+
+    See the [destinations](/destinations) page for the full field reference.
   </Step>
 
   <Step title="Start syncing">
-    Click **Create Sync** to finish setup. Your first sync runs automatically, and new transactions are synced daily from there.
+    Click **Create Sync** to finish setup. Your first sync runs automatically, and new data is synced on an ongoing basis from there.
   </Step>
 </Steps>
 
 ## After setup
 
-Use the sidebar to manage your syncs, connections, destinations, runs, and consents. You can trigger a manual sync anytime from a sync's detail page using the **Sync Now** button.
+Use the sidebar to manage your [syncs](/syncs), [connections](/connections), [destinations](/destinations), [runs](/runs), and [consents](/consents). You can trigger a manual sync anytime from a sync's detail page using the **Sync Now** button.

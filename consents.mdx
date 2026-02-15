@@ -6,7 +6,7 @@ description: "Manage your Consumer Data Right (CDR) consents"
 A CDR consent is a time-limited agreement that allows Redbark Sync to access your banking data. Each consent is tied to a specific bank and expires after 12 months.
 
 <Info>
-  Under Australia's Consumer Data Right, you control how your banking data is shared. Consents expire after 12 months and can be withdrawn at any time.
+  CDR consents apply to **Australian bank connections** only. New Zealand bank connections use Akahu's OAuth model, and brokerage connections use SnapTrade's connection flow — neither requires a separate consent management step.
 </Info>
 
 ## Consent cards
@@ -33,8 +33,12 @@ Consents last 12 months from the date they were created. A warning badge appears
 
 ## Withdrawing consent
 
-Click **Withdraw Consent** on an active consent to revoke data access immediately. This will disable any syncs that use the associated bank connection. Data that has already been synced to your spreadsheets is not deleted.
+Click **Withdraw Consent** on an active consent to revoke data access immediately. This will disable any syncs that use the associated bank connection. Data that has already been synced to your destinations is not deleted.
 
 ## Re-consenting
 
 To restore access after a consent expires or is withdrawn, add a new bank connection from the [connections](/connections) page. This will create a fresh 12-month consent.
+
+## Other connection types
+
+New Zealand bank connections (Akahu) and brokerage connections (SnapTrade) do not use CDR consents. To revoke access for these connections, delete the connection from the [connections](/connections) page or revoke access directly through your bank or brokerage.

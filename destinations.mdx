@@ -1,9 +1,9 @@
 ---
 title: "Destinations"
-description: "Choose where your transactions are synced"
+description: "Choose where your data is synced"
 ---
 
-A destination is a specific location — a Google Sheets spreadsheet, an Airtable base, or a Notion database — where your bank transactions are written.
+A destination is a specific location — a Google Sheets spreadsheet, an Airtable base, or a Notion database — where your bank or brokerage data is written.
 
 You can connect multiple destinations and create separate syncs for each, allowing you to send different accounts to different places.
 
@@ -11,7 +11,7 @@ You can connect multiple destinations and create separate syncs for each, allowi
 
 <Columns cols={3}>
   <Card title="Google Sheets" icon="table" href="/google-sheets">
-    Sync transactions to a spreadsheet in Google Sheets.
+    Sync transactions, holdings, and trades to a spreadsheet.
   </Card>
   <Card title="Airtable" icon="grid-2" href="/airtable">
     Sync transactions to a table in an Airtable base.
@@ -20,6 +20,10 @@ You can connect multiple destinations and create separate syncs for each, allowi
     Sync transactions to a database in Notion.
   </Card>
 </Columns>
+
+<Info>
+  Google Sheets supports all sync types — transactions, holdings, and trades. Airtable and Notion currently support transaction syncs only.
+</Info>
 
 ## Destinations list
 
@@ -40,7 +44,7 @@ Each destination card shows:
     Sign in with your account for the chosen service. Redbark Sync will request permission to read and write data.
   </Step>
   <Step title="Select a target">
-    Pick the specific resource to write transactions to:
+    Pick the specific resource to write data to:
 
     - **Google Sheets** — choose a spreadsheet, then a sheet (tab)
     - **Airtable** — choose a base, then a table
@@ -48,7 +52,9 @@ Each destination card shows:
   </Step>
 </Steps>
 
-## Transaction fields
+## Data fields by sync type
+
+### Transaction fields
 
 All destinations receive the same set of transaction fields, formatted appropriately for each platform:
 
@@ -67,8 +73,44 @@ All destinations receive the same set of transaction fields, formatted appropria
 | Class | Payment, transfer, fee, interest, or other |
 | Post Date | Date the transaction was posted |
 
+### Holdings fields (Google Sheets only)
+
+Holdings syncs write a full portfolio snapshot on each run:
+
+| Field | Description |
+| --- | --- |
+| Symbol | Stock ticker or symbol |
+| Name | Company or asset name |
+| Quantity | Number of shares held |
+| Avg Price | Average purchase price per share |
+| Current Price | Current market price |
+| Market Value | Total current value |
+| P&L | Unrealised profit or loss |
+| Currency | Currency code (e.g. USD) |
+| Exchange | Stock exchange code |
+| Last Updated | When the data was last synced |
+
+### Trade fields (Google Sheets only)
+
+Trade syncs append new trades with deduplication:
+
+| Field | Description |
+| --- | --- |
+| Trade ID | Unique identifier used for deduplication |
+| Date | Trade execution date |
+| Symbol | Stock ticker or symbol |
+| Type | Buy, sell, dividend, split, transfer, fee, interest, or other |
+| Quantity | Number of shares traded |
+| Price | Price per share |
+| Total | Total transaction amount |
+| Fees | Trading or commission fees |
+| Currency | Currency code (e.g. USD) |
+| Account | Brokerage account name |
+| Description | Additional trade description |
+| Settlement Date | Settlement date (if available) |
+
 <Tip>
-  Transactions are deduplicated using the Transaction ID. Re-running a sync will not create duplicate entries.
+  Transactions and trades are deduplicated using their respective IDs. Re-running a sync will not create duplicate entries. Holdings are replaced entirely on each sync.
 </Tip>
 
 ## Removing a destination
