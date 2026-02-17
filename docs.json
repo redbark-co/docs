@@ -29,7 +29,8 @@
         "pages": [
           "google-sheets",
           "airtable",
-          "notion"
+          "notion",
+          "actual-budget"
         ]
       }
     ],
